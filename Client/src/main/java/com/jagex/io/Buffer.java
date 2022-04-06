@@ -430,10 +430,13 @@ public final class Buffer {
 	}
 
 	public void writeUSmartInt(int value) {
-		if (value > Short.MAX_VALUE) {
-			this.writeInt(value);
-		} else {
-			this.writeUSmart(value);
+		while (value >= 0) {
+			if (value < 32767) {
+				writeUSmart(value);
+				return;
+			}
+			writeUSmart(32767);
+			value -= 32767;
 		}
 	}
 
