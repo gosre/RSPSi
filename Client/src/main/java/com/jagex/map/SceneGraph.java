@@ -2773,9 +2773,12 @@ public class SceneGraph {
 			if (Options.showUnderlayNumbers.get()) {
 				if (activeTile != null) {
 					try {
-						int underlayId = getMapRegion().underlays[activeTile.plane][activeTile.positionX][activeTile.positionY] - 1;
-						if (underlayId > 0 && screenPos.getX() > 0 && screenPos.getY() > 0)
-							Client.getSingleton().robotoFont.drawString("" + underlayId, (int) screenPos.getX(), (int) screenPos.getY(), 0xffff00);
+						if (screenPos.getX() > 0 && screenPos.getY() > 0) {
+							int underlayId = (getMapRegion().underlays[activeTile.plane][activeTile.positionX][activeTile.positionY] - 1) & 0xff;
+							if (underlayId != 0xff) {
+								Client.getSingleton().robotoFont.drawString("" + underlayId, (int) screenPos.getX(), (int) screenPos.getY(), 0xffff00);
+							}
+						}
 					} catch (Exception e) {
 					}
 				}
@@ -2783,9 +2786,12 @@ public class SceneGraph {
 			if (Options.showOverlayNumbers.get()) {
 				if (activeTile != null) {
 					try {
-						int overlayId = getMapRegion().overlays[activeTile.plane][activeTile.positionX][activeTile.positionY] - 1;
-						if (overlayId > 0 && screenPos.getX() > 0 && screenPos.getY() > 0)
-							Client.getSingleton().robotoFont.drawString("" + overlayId, (int) screenPos.getX(), (int) screenPos.getY(), 0xffff00);
+						if (screenPos.getX() > 0 && screenPos.getY() > 0) {
+							int overlayId = (getMapRegion().overlays[activeTile.plane][activeTile.positionX][activeTile.positionY] - 1) & 0xff;
+							if (overlayId != 0xff) {
+								Client.getSingleton().robotoFont.drawString("" + overlayId, (int) screenPos.getX(), (int) screenPos.getY(), 0xffff00);
+							}
+						}
 					} catch (Exception e) {
 					}
 				}
