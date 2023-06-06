@@ -196,7 +196,7 @@ public final class Client implements Runnable {
 	}
 
 	public boolean loggedIn;
-	public int[] settings = new int[10000];
+	public int[] settings = new int[12000]; //for zaros custom varps
 	long aLong1220;
 	int lastMouseX;
 	int lastMouseY;
